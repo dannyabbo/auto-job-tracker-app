@@ -9,6 +9,11 @@ export default async function Home() {
       {session ? (
         <div className="text-center">
           <p className="mb-4">Singned in as {session.user?.email}</p>
+
+          <div className="flex gap-4">
+            <SyncButton />
+          </div>
+
           <form
             action={async () => {
               "use server"
@@ -33,5 +38,15 @@ export default async function Home() {
         </form>
       )}
     </main>
+  )
+}
+
+function SyncButton() {
+  return (
+    <form action="/api/emails/sync" method="POST">
+      <button className="bg-green-500 text-white px-4 py-2 rounded">
+        Sync Emails
+      </button>
+    </form>
   )
 }
